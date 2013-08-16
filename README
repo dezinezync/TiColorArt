@@ -1,0 +1,34 @@
+TiColorArt
+===========================================
+
+Titanium module adapation of Aaron Brethorst's ColorArt Class.
+
+INSTALL THE MODULE
+--------------------
+
+1. Run `build.py` which creates your distribution
+2. cd to `/Library/Application Support/Titanium`
+3. copy this zip file into the folder of your Titanium SDK
+
+REGISTER THE MODULE
+---------------------
+
+Register your module with your application by editing `tiapp.xml` and adding your module.
+Example:
+
+<modules>
+	<module version="0.1">com.dezinezync.ticolorart</module>
+</modules>
+
+When you run your project, the compiler will know automatically compile in your module
+dependencies and copy appropriate image assets into the application.
+
+USING THE MODULE IN CODE
+-------------------------
+
+Check the app in the example folder.
+
+FOOTNOTE
+-------------------------
+
+All images included in this folder are Copyright of Nikhil Nigade (@dezinezync). You may not use the included images in your own personal/commerical/3rd party projects. These images are included for demonstration purposes and should not be used otherwise.
