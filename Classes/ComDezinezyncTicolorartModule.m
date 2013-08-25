@@ -97,53 +97,59 @@
     
     if ( image != nil )
     {
-        SLColorArt *colorArt = [[SLColorArt alloc] initWithImage:image threshold:2];
+        __block NSMutableDictionary *data = nil;
         
-        CGFloat fr,fg,fb;
-        int r,g,b;
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         
-        [colorArt.backgroundColor getRed:&fr green:&fg blue:&fb alpha:nil];
+            SLColorArt *colorArt = [[SLColorArt alloc] initWithImage:image threshold:2];
         
-        r = (int)(255.0 * fr);
-        g = (int)(255.0 * fg);
-        b = (int)(255.0 * fb);
+            CGFloat fr,fg,fb;
+            int r,g,b;
         
-        NSString *backgroundColor = [NSString stringWithFormat:@"%02x%02x%02x",r,g,b];
+            [colorArt.backgroundColor getRed:&fr green:&fg blue:&fb alpha:nil];
         
+            r = (int)(255.0 * fr);
+            g = (int)(255.0 * fg);
+            b = (int)(255.0 * fb);
         
-        [colorArt.primaryColor getRed:&fr green:&fg blue:&fb alpha:nil];
-        
-        r = (int)(255.0 * fr);
-        g = (int)(255.0 * fg);
-        b = (int)(255.0 * fb);
-        
-        NSString *primaryColor = [NSString stringWithFormat:@"%02x%02x%02x",r,g,b];
+            NSString *backgroundColor = [NSString stringWithFormat:@"%02x%02x%02x",r,g,b];
         
         
-        [colorArt.secondaryColor getRed:&fr green:&fg blue:&fb alpha:nil];
+            [colorArt.primaryColor getRed:&fr green:&fg blue:&fb alpha:nil];
         
-        r = (int)(255.0 * fr);
-        g = (int)(255.0 * fg);
-        b = (int)(255.0 * fb);
+            r = (int)(255.0 * fr);
+            g = (int)(255.0 * fg);
+            b = (int)(255.0 * fb);
         
-        NSString *secondaryColor = [NSString stringWithFormat:@"%02x%02x%02x",r,g,b];
+            NSString *primaryColor = [NSString stringWithFormat:@"%02x%02x%02x",r,g,b];
+        
+        
+            [colorArt.secondaryColor getRed:&fr green:&fg blue:&fb alpha:nil];
+        
+            r = (int)(255.0 * fr);
+            g = (int)(255.0 * fg);
+            b = (int)(255.0 * fb);
+        
+            NSString *secondaryColor = [NSString stringWithFormat:@"%02x%02x%02x",r,g,b];
 
         
-        [colorArt.detailColor getRed:&fr green:&fg blue:&fb alpha:nil];
+            [colorArt.detailColor getRed:&fr green:&fg blue:&fb alpha:nil];
         
-        r = (int)(255.0 * fr);
-        g = (int)(255.0 * fg);
-        b = (int)(255.0 * fb);
+            r = (int)(255.0 * fr);
+            g = (int)(255.0 * fg);
+            b = (int)(255.0 * fb);
         
-        NSString *detailColor = [NSString stringWithFormat:@"%02x%02x%02x",r,g,b];
+            NSString *detailColor = [NSString stringWithFormat:@"%02x%02x%02x",r,g,b];
         
         
-        NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+            data = [[NSMutableDictionary alloc] init];
         
-        [data setValue:backgroundColor forKey:@"backgroundColor"];
-        [data setValue:primaryColor forKey:@"primaryColor"];
-        [data setValue:secondaryColor forKey:@"secondaryColor"];
-        [data setValue:detailColor forKey:@"detailColor"];
+            [data setValue:backgroundColor forKey:@"backgroundColor"];
+            [data setValue:primaryColor forKey:@"primaryColor"];
+            [data setValue:secondaryColor forKey:@"secondaryColor"];
+            [data setValue:detailColor forKey:@"detailColor"];
+            
+        });
         
         return data;
     }
