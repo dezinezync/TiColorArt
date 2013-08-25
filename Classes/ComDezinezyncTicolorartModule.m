@@ -97,7 +97,7 @@
     
     if ( image != nil )
     {
-        SLColorArt *colorArt = [[SLColorArt alloc] initWithImage:image];
+        SLColorArt *colorArt = [[SLColorArt alloc] initWithImage:image threshold:2];
         
         CGFloat fr,fg,fb;
         int r,g,b;

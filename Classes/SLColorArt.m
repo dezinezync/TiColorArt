@@ -84,8 +84,8 @@
           onComplete:(void (^)(SLColorArt *colorArt))completeBlock;
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        UIImage *scaledImage = [image scaledToSize:scaleSize];
-        SLColorArt *colorArt = [[SLColorArt alloc] initWithImage:scaledImage
+        //UIImage *scaledImage = [image scaledToSize:scaleSize];
+        SLColorArt *colorArt = [[SLColorArt alloc] initWithImage:image
                                                        threshold:threshold];
         dispatch_async(dispatch_get_main_queue(), ^{
             completeBlock(colorArt);
@@ -110,7 +110,8 @@
 
 - (UIImage*)_scaleImage:(UIImage*)image size:(CGSize)scaledSize
 {
-    return [image scaledToSize:scaledSize];
+    return image;
+    //return [image scaledToSize:scaledSize];
 //    CGSize imageSize = [image size];
 //    UIImage *squareImage = [[UIImage alloc] initWithSize:CGSizeMake(imageSize.width, imageSize.width)];
 //    UIImage *scaledImage = [[UIImage alloc] initWithSize:scaledSize];

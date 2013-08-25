@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8ADD4A2A-BD88-4101-82CC-99AF09DF822D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TiColorArt</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9447A5CA-2090-4276-B4C3-9897DDAF30E3</key>
+		<string>ssh://github.com/dezinezync/TiColorArt.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TiColorArt.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9447A5CA-2090-4276-B4C3-9897DDAF30E3</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/dezinezync/TiColorArt.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9447A5CA-2090-4276-B4C3-9897DDAF30E3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9447A5CA-2090-4276-B4C3-9897DDAF30E3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TiColorArt</string>
+		</dict>
+	</array>
+</dict>
+</plist>
