@@ -2,7 +2,7 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 0.2
+version: 0.3
 apiversion: 2
 description: My module
 author: Your Name
@@ -16,3 +16,4 @@ moduleid: com.dezinezync.ticolorart
 guid: 867dcb77-35fd-4e77-aaf5-db4af1670bcb
 platform: iphone
 minsdk: 3.1.2.GA
+architectures: armv7 i386 x86_64 arm64
