@@ -87,75 +87,86 @@
 	}
 }
 
+-(id)getcolors:image {
+	if ( image != nil )
+	{
+		__block NSMutableDictionary *data = nil;
+		
+		dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+			
+			SLColorArt *colorArt = [[SLColorArt alloc] initWithImage:image threshold:2];
+			
+			CGFloat fr,fg,fb;
+			int r,g,b;
+			
+			[colorArt.backgroundColor getRed:&fr green:&fg blue:&fb alpha:nil];
+			
+			r = (int)(255.0 * fr);
+			g = (int)(255.0 * fg);
+			b = (int)(255.0 * fb);
+			
+			NSString *backgroundColor = [NSString stringWithFormat:@"%02x%02x%02x",r,g,b];
+			
+			
+			[colorArt.primaryColor getRed:&fr green:&fg blue:&fb alpha:nil];
+			
+			r = (int)(255.0 * fr);
+			g = (int)(255.0 * fg);
+			b = (int)(255.0 * fb);
+			
+			NSString *primaryColor = [NSString stringWithFormat:@"%02x%02x%02x",r,g,b];
+			
+			
+			[colorArt.secondaryColor getRed:&fr green:&fg blue:&fb alpha:nil];
+			
+			r = (int)(255.0 * fr);
+			g = (int)(255.0 * fg);
+			b = (int)(255.0 * fb);
+			
+			NSString *secondaryColor = [NSString stringWithFormat:@"%02x%02x%02x",r,g,b];
+			
+			
+			[colorArt.detailColor getRed:&fr green:&fg blue:&fb alpha:nil];
+			
+			r = (int)(255.0 * fr);
+			g = (int)(255.0 * fg);
+			b = (int)(255.0 * fb);
+			
+			NSString *detailColor = [NSString stringWithFormat:@"%02x%02x%02x",r,g,b];
+			
+			
+			data = [[NSMutableDictionary alloc] init];
+			
+			[data setValue:backgroundColor forKey:@"backgroundColor"];
+			[data setValue:primaryColor forKey:@"primaryColor"];
+			[data setValue:secondaryColor forKey:@"secondaryColor"];
+			[data setValue:detailColor forKey:@"detailColor"];
+			
+		});
+		
+		return data;
+	}
+	
+	return [NSNull null];
+
+}
 #pragma Public APIs
 
 -(id)analyze:(id)url
 {
 	ENSURE_SINGLE_ARG(url, NSString);
-    
+	
     UIImage *image = [UIImage imageWithContentsOfFile:url];
-    
-    if ( image != nil )
-    {
-        __block NSMutableDictionary *data = nil;
-        
-        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        
-            SLColorArt *colorArt = [[SLColorArt alloc] initWithImage:image threshold:2];
-        
-            CGFloat fr,fg,fb;
-            int r,g,b;
-        
-            [colorArt.backgroundColor getRed:&fr green:&fg blue:&fb alpha:nil];
-        
-            r = (int)(255.0 * fr);
-            g = (int)(255.0 * fg);
-            b = (int)(255.0 * fb);
-        
-            NSString *backgroundColor = [NSString stringWithFormat:@"%02x%02x%02x",r,g,b];
-        
-        
-            [colorArt.primaryColor getRed:&fr green:&fg blue:&fb alpha:nil];
-        
-            r = (int)(255.0 * fr);
-            g = (int)(255.0 * fg);
-            b = (int)(255.0 * fb);
-        
-            NSString *primaryColor = [NSString stringWithFormat:@"%02x%02x%02x",r,g,b];
-        
-        
-            [colorArt.secondaryColor getRed:&fr green:&fg blue:&fb alpha:nil];
-        
-            r = (int)(255.0 * fr);
-            g = (int)(255.0 * fg);
-            b = (int)(255.0 * fb);
-        
-            NSString *secondaryColor = [NSString stringWithFormat:@"%02x%02x%02x",r,g,b];
+	
+	return [self getcolors:image];
 
-        
-            [colorArt.detailColor getRed:&fr green:&fg blue:&fb alpha:nil];
-        
-            r = (int)(255.0 * fr);
-            g = (int)(255.0 * fg);
-            b = (int)(255.0 * fb);
-        
-            NSString *detailColor = [NSString stringWithFormat:@"%02x%02x%02x",r,g,b];
-        
-        
-            data = [[NSMutableDictionary alloc] init];
-        
-            [data setValue:backgroundColor forKey:@"backgroundColor"];
-            [data setValue:primaryColor forKey:@"primaryColor"];
-            [data setValue:secondaryColor forKey:@"secondaryColor"];
-            [data setValue:detailColor forKey:@"detailColor"];
-            
-        });
-        
-        return data;
-    }
-    
-    return [NSNull null];
+}
 
+-(id)analyzeImage:(id)blob
+{
+	ENSURE_SINGLE_ARG(blob, TiBlob);
+	UIImage *image = [blob image];
+	return [self getcolors:image];
 }
 
 @end
